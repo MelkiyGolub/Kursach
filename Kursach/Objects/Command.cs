@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Kursach.Objects;
 
-internal class Command : ICommand
+public class Command : ICommand
 {
     public Command(Action<object> execute, Func<object, bool> canExecute = null)
     {

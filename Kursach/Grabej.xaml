@@ -3,16 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Kursach" 
-        xmlns:viewmodels="clr-namespace:Kursach.ViewModels"
+        xmlns:local="clr-namespace:Kursach"
         mc:Ignorable="d"        
         Title="Grabej" Height="200" Width="400"
         Background="#252628" WindowStyle="None"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-
-    <Window.DataContext>
-        <viewmodels:GrabejViewModel/>
-    </Window.DataContext>
     
     <Border BorderBrush="Black"
             BorderThickness="2">
@@ -38,7 +33,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <TextBlock Text="Тариф: " FontSize="20" FontFamily ="Comic Sans MS"/>
                     <ComboBox Width="150" SelectedItem="{Binding SelectedTarif, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              DisplayMemberPath="Title" ItemsSource="{Binding Tarify}" SelectionChanged="ComboBox_SelectionChanged"/>
+                              DisplayMemberPath="Title" ItemsSource="{Binding Tarify}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">

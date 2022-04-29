@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:Kursach.ViewModels"
+        xmlns:local="clr-namespace:Kursach"
         mc:Ignorable="d"
         Title="Cumputers" Height="630" Width="1260" 
         Background="#252628" WindowStyle="None"
@@ -14,15 +15,6 @@
         <viewmodels:MainViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <Style TargetType="Border" x:Key="CompBlockStyle">
-            <Setter Property="Background" Value="#454646"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Margin" Value="3"/>
-        </Style>
-    </Window.Resources>
-    
     <Border>
         <Grid>
             <Grid.RowDefinitions>
@@ -59,83 +51,35 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Border Style="{StaticResource CompBlockStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+                <local:ComputerControl Grid.Column="0" Grid.Row="0"
+                                       Number="1" Status="Свободен"/>
 
-                        <TextBlock Text="1" HorizontalAlignment="Right"
-                                   FontSize="38" VerticalAlignment="Center" Margin="0 8 8 0"
-                                   FontFamily ="Comic Sans MS"/>
+                <local:ComputerControl Grid.Column="1" Grid.Row="0"
+                                       Number="2" Status="Свободен"/>
 
-                        <TextBlock Text="Свободен" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" FontSize="38"
-                                   Background="Green"
-                                   FontFamily ="Comic Sans MS"/>
+                <local:ComputerControl Grid.Column="2" Grid.Row="0"
+                                       Number="3" Status="Свободен"/>
 
-                        <TextBlock Grid.Row="1" Text="{Binding Time}"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                                   FontSize="48" FontFamily ="Comic Sans MS" Margin="0 0 0 20"/>
+                <local:ComputerControl Grid.Column="3" Grid.Row="0"
+                                       Number="4" Status="Свободен"/>
 
-                        <Button Grid.Row="2" Content="Продлить"
-                                Click="Button_Click"
-                                FontSize="20" FontFamily ="Comic Sans MS"/>
+                <local:ComputerControl Grid.Column="4" Grid.Row="0"
+                                       Number="5" Status="Свободен"/>
 
-                        <Button Grid.Row="3" Content="Статистика"
-                                FontSize="20" FontFamily ="Comic Sans MS"/>
+                <local:ComputerControl Grid.Column="0" Grid.Row="1"
+                                       Number="6" Status="Свободен"/>
 
-                    </Grid>
-                </Border>
+                <local:ComputerControl Grid.Column="1" Grid.Row="1"
+                                       Number="7" Status="Свободен"/>
 
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="0" Grid.Row="1">
+                <local:ComputerControl Grid.Column="2" Grid.Row="1"
+                                       Number="8" Status="Свободен"/>
 
-                </Border>
+                <local:ComputerControl Grid.Column="3" Grid.Row="1"
+                                       Number="9" Status="Свободен"/>
 
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="1" Grid.Row="1">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="1" Grid.Row="0">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="2" Grid.Row="0">
-
-                </Border>
-                
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="2" Grid.Row="1">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="3" Grid.Row="0">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="3" Grid.Row="1">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="4" Grid.Row="0">
-
-                </Border>
-
-                <Border Style="{StaticResource CompBlockStyle}"
-                        Grid.Column="4" Grid.Row="1">
-
-                </Border>
-
+                <local:ComputerControl Grid.Column="4" Grid.Row="1"
+                                       Number="10" Status="Свободен"/>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -183,7 +127,7 @@
 
                 <Button Grid.Column="2" Grid.Row="0"
                         FontFamily ="Comic Sans MS"
-                        Margin="3" Click="Button_Click_1">
+                        Margin="3">
                     <Viewbox>
                         <Label Content="Пакеты услуг"/>
                     </Viewbox>

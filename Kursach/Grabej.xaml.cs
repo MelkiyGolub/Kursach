@@ -1,37 +1,128 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kursach.Objects;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
-namespace Kursach
+namespace Kursach;
+
+public partial class Grabej : Window, INotifyPropertyChanged
 {
-    /// <summary>
-    /// Логика взаимодействия для Grabej.xaml
-    /// </summary>
-    public partial class Grabej : Window
+    public Grabej(ComputerControl control)
     {
-        public Grabej()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        DataContext = this;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        PayCommand = new(o =>
         {
+            control.Time = TimeSpan.FromHours(SelectedTarif.Time);
+            control.Timer.Start();
+            control.Status = "Занят";
+            control.statusCanvas.Background = Brushes.Red;
             Hide();
-        }
+        });
+    }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        Hide();
+    }
+
+    private double _hours;
+    public double Hours
+    {
+        get => _hours;
+        set
         {
+            _hours = value;
+            Signal();
+
+            if (SelectedTarif is not null)
+                Price = SelectedTarif.Price;
+        }
+    }
+
+    private double _price;
+    public double Price
+    {
+        get => _price;
+        set
+        {
+            _price = value;
+            Signal();
+        }
+    }
+
+    private Tarif _selectedTarif;
+    public Tarif SelectedTarif
+    {
+        get => _selectedTarif;
+        set
+        {
+            _selectedTarif = value;
+            Hours = value.Time;
+            Signal();
 
         }
     }
+
+    public Tarif[] Tarify { get; set; } = new Tarif[]
+    {
+        new()
+        {
+           Title = "Обычный",
+           Price = 60,
+           Time = 1
+        },
+        new()
+        {
+            Title = "3 Часа",
+            Price = 150,
+            Time = 3
+        },
+         new()
+         {
+            Title = "Дотерский",
+           Price = 250,
+           Time = 5
+         },
+
+        new()
+        {
+         Title = "10 Часов",
+         Price = 550,
+         Time = 10
+        },
+
+        new()
+        {
+         Title = "Киберспортсмен",
+         Price = 650,
+         Time = 12
+        },
+
+        new()
+        {
+            Title = "Сутки напролёт",
+           Price = 1200,
+           Time = 24
+        }
+    };
+
+    public Command PayCommand { get; init; }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected void Signal([CallerMemberName] string? name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+}
+
+public class Tarif
+{
+    public string Title { get; set; }
+    public double Price { get; set; }
+    public int Time { get; set; }
 }
