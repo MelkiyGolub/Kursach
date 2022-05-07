@@ -1,0 +1,71 @@
+﻿<Window x:Class="Kursach.sklad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursach" 
+        xmlns:model="clr-namespace:Kursach.Objects.Models"
+        xmlns:viewmodels="clr-namespace:Kursach.ViewModels"
+        mc:Ignorable="d"
+        Title="sklad" Height="510" Width="800"
+        Background="#252628" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewmodels:SkladViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="DetailTemplate"
+                      DataType="{x:Type model:Detail}">
+
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="White" Margin="0 0 15 0"
+                               Text="{Binding Type}" FontSize="18"/>
+                    <TextBlock Foreground="White"
+                               Text="{Binding Model}" FontSize="18"/>
+                </StackPanel>
+
+                <TextBlock Text="{Binding Amount}"
+                           Foreground="White"
+                           HorizontalAlignment="Right" Margin="0 0 20 0"
+                           FontSize="18"/>
+
+            </Grid>
+            
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#FCE205">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+
+                    <Button Width="30" Content="x"
+                            Click="Button_Click"
+                            Style="{StaticResource AppStateButtonStyle}"/>
+
+                </StackPanel>
+            </Border>
+
+            <ItemsControl Grid.Row="1" Background="Transparent"
+                          ItemsSource="{Binding Details.Values}"
+                          HorizontalContentAlignment="Stretch"
+                          ItemTemplate="{StaticResource ResourceKey=DetailTemplate}"/>
+
+            <Button Grid.Row="2" Content="Заказать"
+                    HorizontalAlignment="Right"
+                    Command="{Binding ShowOrdersCommand}"
+                    Width="120" FontSize="20"/>
+
+        </Grid>
+    </Border>
+</Window>

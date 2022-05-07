@@ -1,0 +1,64 @@
+﻿<Window x:Class="Kursach.Objects.Models.OrderDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:Kursach.ViewModels"
+        mc:Ignorable="d"
+        Title="OrderDetailWindow" Height="200" Width="400"
+        Background="#252628" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Border BorderBrush="Black"
+            BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Background="#FCE205">
+                <Button HorizontalAlignment="Right" Width="30"
+                        Content="x" Click="Button_Click"
+                        Style="{StaticResource AppStateButtonStyle}"/>
+            </Border>
+            
+            <StackPanel Grid.Row="1">
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="20">
+                    <TextBlock Text="Тип: " FontSize="22"/>
+                    <ComboBox ItemsSource="{Binding Details.Values}"
+                              SelectedItem="{Binding SelectedDetail}"
+                              DisplayMemberPath="Type"
+                              Width="280" FontSize="22"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="20 0 20 0">
+                    <TextBlock Text="Кол-во: " FontSize="22"/>
+                    <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="22"
+                             Width="250"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="20 20 20 0">
+                    <TextBlock Text="Сумма: "
+                               FontSize="20" FontFamily ="Comic Sans MS"/>
+                    <TextBlock Text="{Binding TotalPrice}" Width="110"
+                               Background="Transparent"
+                               FontSize="20" FontFamily ="Comic Sans MS"/>
+                </StackPanel>
+
+
+            </StackPanel>
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Content="Заказать" Grid.Row="1"
+                    Click="Button_Click"
+                    Width="100" Height="35" Command="{Binding OrderDetailCommand}"/>
+
+        </Grid>
+    </Border>
+</Window>

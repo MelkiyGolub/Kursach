@@ -16,6 +16,10 @@ namespace Kursach.ViewModels
         public Command ExitCommand { get; } = new(o => Application.Current.Shutdown());
         public Command HideCommand { get; } = new(o => Application.Current.MainWindow.WindowState = WindowState.Minimized);
 
+        public Command ShowSkladCommand { get; } = new(o => new sklad().ShowDialog());
+
+        public Command ShowPacketsCommand { get; } = new(o => new Packets().ShowDialog());
+
         public Command TelegaCommand { get; } = new(o =>
         {
             Process.Start(new ProcessStartInfo

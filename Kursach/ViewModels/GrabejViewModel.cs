@@ -5,14 +5,6 @@ namespace Kursach.ViewModels;
 
 internal class GrabejViewModel : ViewModelBase
 {
-    public GrabejViewModel()
-    {
-        PayCommand = new(o =>
-        {
-            MainViewModel.Instance.Time = TimeSpan.FromHours(SelectedTarif.Time);
-            MainViewModel.Instance.Timer.Start();
-        });
-    }
     private double _hours;
     public double Hours
     {

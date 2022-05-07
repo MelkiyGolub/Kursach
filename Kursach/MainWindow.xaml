@@ -8,8 +8,9 @@
         mc:Ignorable="d"
         Title="Cumputers" Height="630" Width="1260" 
         Background="#252628" WindowStyle="None"
-        WindowState="Maximized"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        WindowState="Maximized" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Icon="ViewModels/Logo.png">
 
     <Window.DataContext>
         <viewmodels:MainViewModel/>
@@ -102,8 +103,9 @@
                 </Button>
 
                 <Button Grid.Column="1" Grid.Row="0" 
-                        FontFamily ="Comic Sans MS"
-                        Margin="3">
+                        FontFamily="Comic Sans MS"
+                        Margin="3" 
+                        Command="{Binding ShowSkladCommand}">
                     <Viewbox>
                         <Label Content="Склад"/>
                     </Viewbox>
@@ -127,9 +129,10 @@
 
                 <Button Grid.Column="2" Grid.Row="0"
                         FontFamily ="Comic Sans MS"
-                        Margin="3">
+                        Margin="3" Command="{Binding ShowPacketsCommand}">
                     <Viewbox>
                         <Label Content="Пакеты услуг"/>
+                               
                     </Viewbox>
                 </Button>
 
